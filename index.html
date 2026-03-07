@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PetHelp AI</title>
+
+<style>
+body{
+font-family:Arial;
+background:#111827;
+color:white;
+text-align:center;
+}
+
+#chat{
+width:60%;
+height:320px;
+background:#1f2937;
+margin:auto;
+overflow:auto;
+padding:10px;
+border-radius:10px;
+}
+
+input{
+width:50%;
+padding:10px;
+}
+
+button{
+padding:10px;
+background:#22c55e;
+color:white;
+border:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>PetHelp AI 🐾</h1>
+<p>Ask questions about dogs, cats, birds, or fish.</p>
+
+<div id="chat"></div>
+
+<input id="msg" placeholder="Example: Why is my dog not eating?">
+<button onclick="send()">Send</button>
+
+<script>
+
+function send(){
+
+let message = document.getElementById("msg").value.toLowerCase();
+let chat = document.getElementById("chat");
+
+chat.innerHTML += "<p><b>You:</b> "+message+"</p>";
+
+let reply = "I can help with pet care questions about dogs, cats, birds, and fish.";
+
+if(message.includes("dog") && message.includes("eat")){
+reply = "If a dog is not eating it may be stress, illness, or a food change. If it continues for more than 24 hours, contact a veterinarian.";
+}
+
+else if(message.includes("cat") && message.includes("feed")){
+reply = "Most adult cats should be fed 2 times a day. Kittens usually need 3 to 4 small meals daily.";
+}
+
+else if(message.includes("bird") && message.includes("feather")){
+reply = "Birds can lose feathers during molting, which is normal. If feather loss continues, it could be stress or illness.";
+}
+
+else if(message.includes("fish") && message.includes("tank")){
+reply = "Fish tanks should usually have 10 to 25 percent of the water changed every 1 to 2 weeks.";
+}
+
+chat.innerHTML += "<p><b>Pet AI:</b> "+reply+"</p>";
+
+document.getElementById("msg").value="";
+
+}
+
+</script>
+
+</body>
+</html>
