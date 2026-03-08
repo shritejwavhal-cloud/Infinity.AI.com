@@ -1,84 +1,110 @@
 <!DOCTYPE html>
-
-<head<meta name="google-site-verification" content="d1XxRR4mts9LgUYJZPTrH9OFMRLdG7DT4Zub9fWM9Ng" />>
+<html>
+<head>
 <title>PetHelp AI</title>
 
 <style>
 body{
-font-family:Arial;
-background:#111827;
-color:white;
-text-align:center;
+  margin:0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  text-align:center;
+}
+
+h1{
+  margin-top:40px;
+  font-size:42px;
+  letter-spacing:1px;
 }
 
 #chat{
-width:60%;
-height:320px;
-background:#1f2937;
-margin:auto;
-overflow:auto;
-padding:10px;
-border-radius:10px;
+  width:60%;
+  height:350px;
+  margin:30px auto;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  border-radius:20px;
+  padding:15px;
+  overflow-y:auto;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  text-align:left;
+}
+
+.message{
+  margin:10px 0;
+  padding:10px 14px;
+  border-radius:12px;
+  max-width:75%;
+}
+
+.user{
+  background:#3b82f6;
+  margin-left:auto;
+}
+
+.ai{
+  background:#22c55e;
+  margin-right:auto;
+}
+
+.input-area{
+  margin-bottom:40px;
 }
 
 input{
-width:50%;
-padding:10px;
+  width:40%;
+  padding:12px;
+  border-radius:25px;
+  border:none;
+  outline:none;
+  font-size:15px;
 }
 
 button{
-padding:10px;
-background:#22c55e;
-color:white;
-border:none;
+  padding:12px 18px;
+  border-radius:25px;
+  border:none;
+  background:#22c55e;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin-left:8px;
 }
 
+button:hover{
+  background:#16a34a;
+}
 </style>
 </head>
 
 <body>
 
-<h1>PetHelp AI 🐾</h1>
+<h1>🐾 PetHelp AI</h1>
 
+<div id="chat">
+  <div class="message ai"><b>Pet AI:</b> Hello! Ask me anything about your pet 🐶🐱</div>
+</div>
 
-<div id="chat"/div>
-
-<input id="msg" placeholder="Example: Why is my dog not eating?">
-<button onclick="send()">Send</button>
+<div class="input-area">
+  <input id="msg" placeholder="Example: Why is my dog not eating?">
+  <button onclick="send()">Send</button>
+</div>
 
 <script>
-
 function send(){
+  let input = document.getElementById("msg");
+  let message = input.value.trim();
+  if(message==="") return;
 
-let message = document.getElementById("msg").value.toLowerCase();
-let chat = document.getElementById("chat");
+  let chat = document.getElementById("chat");
 
-chat.innerHTML += "<p><b>You:</b> "+message+"</p>";
+  chat.innerHTML += `<div class="message user"><b>You:</b> ${message}</div>`;
+  chat.innerHTML += `<div class="message ai"><b>Pet AI:</b> I am still learning. For serious issues, please visit a vet.</div>`;
 
-let reply = "I can help with pet care questions about dogs, cats, birds, and fish.";
-
-if(message.includes("dog") && message.includes("eat")){
-reply = "If a dog is not eating it may be stress, illness, or a food change. If it continues for more than 24 hours, contact a veterinarian.";
+  chat.scrollTop = chat.scrollHeight;
+  input.value="";
 }
-
-else if(message.includes("cat") && message.includes("feed")){
-reply = "Most adult cats should be fed 2 times a day. Kittens usually need 3 to 4 small meals daily.";
-}
-
-else if(message.includes("bird") && message.includes("feather")){
-reply = "Birds can lose feathers during molting, which is normal. If feather loss continues, it could be stress or illness.";
-}
-
-else if(message.includes("fish") && message.includes("tank")){
-reply = "Fish tanks should usually have 10 to 25 percent of the water changed every 1 to 2 weeks.";
-}
-
-chat.innerHTML += "<p><b>Pet AI:</b> "+reply+"</p>";
-
-document.getElementById("msg").value="";
-
-}
-
 </script>
 
 </body>
